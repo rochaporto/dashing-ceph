@@ -1,2 +1,2 @@
-dashing-ceph
+Dashing CEPH
 ============
