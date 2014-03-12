@@ -1,0 +1,23 @@
+<% content_for :title do %>CEPH Storage Cluster<% end %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="catalyst" data-view="Image" data-title="Catalyst" data-image="/catalyst.png" data-width="250px"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="status" data-view="Health" data-title="Cluster Status" data-text=". status will show here ."></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="storage" data-view="Meter" data-title="Storage"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="pool-images" data-view="Number" data-title="Images"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="pool-volumes" data-view="Number" data-title="Volumes"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="traffic" data-view="Mgraph" data-title="Traffic" data-moreinfo="read / write"></div>
+    </li>
+  </ul>
+</div>
