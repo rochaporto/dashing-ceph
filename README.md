@@ -31,7 +31,7 @@ Requirements
 
 You need a working CEPH client configured in the machine running the dashing instance.
 
-For now it requires the `admin` client (keyring).
+For now it requires the `admin` client (keyring), available to the user running dashing.
 
 Setup
 -----
