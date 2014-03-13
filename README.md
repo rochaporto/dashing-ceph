@@ -19,15 +19,26 @@ It provides one single dashboard with the following components:
 * Pool usage (two pools, configurable)
 * Traffic display (read and write)
 
+Screenshots
+-----------
+
+![image](https://raw.github.com/rochaporto/dashing-ceph/public/ceph_ok.png)
+
+![image](https://raw.github.com/rochaporto/dashing-ceph/public/ceph_warn.png)
+
 Requirements
 ------------
 
-You need a working CEPH client configured in the machine running the dashing instance, with the admin keyring.
+You need a working CEPH client configured in the machine running the dashing instance.
+
+For now it requires the `admin` client (keyring).
 
 Setup
 -----
 
-After cloning this repository, check the config.yaml file to define the pools to monitor - default are `images` and `volumes`.
+After cloning this repository, check the config.yaml file to define the pools to monitor.
+
+Below the default configuration, which includes pools `images` and `volumes`.
 
     pools:
       images:
@@ -40,11 +51,6 @@ You can then start the instance as usual:
     dashing start -p 3000
 
 `-p` for port is optional.
-
-Screenshots
------------
-
-
 
 Limitations
 -----------
