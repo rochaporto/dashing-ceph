@@ -7,7 +7,7 @@ dashing_config = './config.yaml'
 config = YAML.load_file(dashing_config)
 
 last = {}
-config['pools'].each do |name|
+config['pools'].keys.each do |name|
     last[name] = 0
 end
 
@@ -20,10 +20,13 @@ SCHEDULER.every '5s' do
   send_event('storage', { value: storage['stats']['total_used'].to_i, min: 0, max: storage['stats']['total_space'].to_i } )
 
   # update each of the config pools widgets
-  storage['pools'].each do |pool|
-    if config['pools'].include? pool['name']
-      send_event("pool-#{pool['name']}", { current: pool['stats']['bytes_used'], last: last[pool['name']] } )
-      last[pool['name']] = pool['stats']['bytes_used']
+  config['pools'].keys.each_with_index do |poolname, index|
+    for pool in storage['pools'] do
+      if pool['name'] == poolname
+        send_event("pool#{index}", { current: pool['stats']['bytes_used'], last: last[pool['name']], 
+                                     title: config['pools'][poolname]['display_name'] } )
+        last[pool['name']] = pool['stats']['bytes_used']
+      end
     end
   end
 
