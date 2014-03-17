@@ -42,6 +42,8 @@ You can find more details in the website, but something like this should work (u
 
     apt-get install rubygems ruby-bundler nodejs
     gem install dashing
+    
+Note that you need Ruby >= 1.9.x for dashing to work.
 
 After cloning this git repository, check the config.yaml file to define the pools to monitor.
 
