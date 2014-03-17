@@ -36,7 +36,14 @@ For now it requires the `admin` client (keyring), available to the user running 
 Setup
 -----
 
-After cloning this repository, check the config.yaml file to define the pools to monitor.
+Start by getting [dashing][http://shopify.github.io/dashing/].
+
+You can find more details in the website, but something like this should work (ubuntu):
+
+    apt-get install rubygems ruby-bundler nodejs
+    gem install dashing
+
+After cloning this git repository, check the config.yaml file to define the pools to monitor.
 
 Below the default configuration, which includes pools `images` and `volumes`.
 
