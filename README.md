@@ -36,7 +36,7 @@ For now it requires the `admin` client (keyring), available to the user running 
 Setup
 -----
 
-Start by getting [dashing][http://shopify.github.io/dashing/].
+Start by getting [dashing](http://shopify.github.io/dashing/).
 
 You can find more details in the website, but something like this should work (ubuntu):
 
