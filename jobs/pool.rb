@@ -13,7 +13,7 @@ end
 
 SCHEDULER.every '5s' do
 
-  result = %x( ceph df -f json )
+  result = %x( timeout 3 ceph df -f json )
 
   # update total storage widget
   storage = JSON.parse(result)

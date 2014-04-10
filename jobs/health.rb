@@ -7,7 +7,7 @@ config = YAML.load_file(dashing_config)
 
 SCHEDULER.every '5s' do
 
-  result = %x( ceph health )
+  result = %x( timeout 3 ceph health )
 
   if result =~ /.*HEALTH_WARN.*/m
     status = 'warn'

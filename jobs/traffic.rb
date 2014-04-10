@@ -33,7 +33,7 @@ SCHEDULER.every '2s' do
   # if ceph osd pool stats is available, get the rw stats from that.
   # otherwise, use ceph status, available in dumpling.
   if poolstats_available
-    result = %x( ceph osd pool stats -f json )
+    result = %x( timeout 2 ceph osd pool stats -f json )
     poolstats = JSON.parse(result)
 
     poolstats.each do |poolstat|
@@ -45,7 +45,7 @@ SCHEDULER.every '2s' do
       end
     end
   else
-    result = %x( ceph status -f json )
+    result = %x( timeout 2 ceph status -f json )
     status = JSON.parse(result)
 
     if status['pgmap'].has_key?('read_bytes_sec')
