@@ -64,6 +64,10 @@ You can then start the instance as usual:
 Limitations
 -----------
 
+Dashing seems to go out of memory on devices like raspberrypi. A workaround
+was implemented in the ceph dashboard, just add `?refresh=X` to the url to
+have it refreshed every X seconds.
+
 No configuration for the ceph user possible right now (assumes `admin`).
 
 It would be nice to add additional views (with new dashboards running in the same instance).
