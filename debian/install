@@ -3,6 +3,7 @@ config.ru usr/share/dashing/ceph
 config.yaml usr/share/dashing/ceph
 dashboards usr/share/dashing/ceph
 Gemfile usr/share/dashing/ceph
+Gemfile.lock usr/share/dashing/ceph
 jobs usr/share/dashing/ceph
 lib usr/share/dashing/ceph
 LICENSE usr/share/dashing/ceph
