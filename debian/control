@@ -1,0 +1,11 @@
+Source: dashing-ceph
+Maintainer: Ricardo Rocha <ricardo@catalyst.net.nz>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 9)
+
+Package: dashing-ceph
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A dashing dashboard with some Ceph metrics.

@@ -1,0 +1,5 @@
+dashing-ceph (0.2.0-1) precise; urgency=medium
+
+  * Initial release.
+
+ -- Ricardo Rocha <ricardo@catalyst.net.nz>  Wed, 09 Jul 2014 13:58:25 +1200
