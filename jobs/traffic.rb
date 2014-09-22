@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'json'
 require 'yaml'
+require 'filesize'
 
 # common config file
 dashing_config = './config.yaml'
@@ -19,9 +20,9 @@ begin
   poolstats = JSON.parse(result)
   poolstats_available = true
 rescue
-  poolstats_available = false  
+  poolstats_available = false
 end
- 
+
 SCHEDULER.every '2s' do
 
   points_rd.shift
@@ -56,5 +57,9 @@ SCHEDULER.every '2s' do
     end
   end
 
-  send_event('traffic', points: [points_rd, points_wr])
+  send_event('traffic',
+    {
+      points: [points_rd, points_wr],
+      moreinfo: Filesize.from("#{points_rd.last[:y]} B").pretty + " / " + Filesize.from("#{points_wr.last[:y]} B").pretty
+    })
 end
