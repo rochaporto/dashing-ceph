@@ -1,3 +1,15 @@
+dashing-ceph (0.4.0-1) precise; urgency=medium
+
+  * Add iops info to the main dashboard
+
+ -- Ricardo Rocha <ricardo@catalyst.net.nz>  Mon, 22 Sep 2014 16:58:25 +1200
+
+dashing-ceph (0.3.1-1) precise; urgency=medium
+
+  * Fixes #3: numbers not rounding properly
+
+ -- Ricardo Rocha <ricardo@catalyst.net.nz>  Mon, 22 Sep 2014 13:58:25 +1200
+
 dashing-ceph (0.3.0-1) precise; urgency=medium
 
   * Initial release.
