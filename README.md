@@ -18,6 +18,7 @@ It provides one single dashboard with the following components:
 * Storage usage meter
 * Pool usage (two pools, configurable)
 * Traffic display (read and write)
+* IOPS
 
 Screenshots
 -----------
