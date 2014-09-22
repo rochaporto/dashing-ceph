@@ -42,7 +42,7 @@ Start by getting [dashing](http://shopify.github.io/dashing/).
 You can find more details in the website, but something like this should work (ubuntu):
 
     apt-get install rubygems ruby-bundler nodejs
-    gem install dashing
+    bundle install
 
 Note that you need Ruby >= 1.9.x for dashing to work.
 
