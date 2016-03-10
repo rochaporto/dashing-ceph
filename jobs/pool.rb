@@ -18,14 +18,14 @@ SCHEDULER.every '5s' do
 
   # update total storage widget
   storage = JSON.parse(result)
-  used = storage['stats']['total_used'].to_i
-  total = storage['stats']['total_space'].to_i
+  used = storage['stats']['total_used_bytes'].to_i
+  total = storage['stats']['total_bytes'].to_i
   send_event('storage',
     {
-      value: Filesize.from("#{used} KB").pretty.split(' ').first.to_f,
+      value: Filesize.from("#{used} B").pretty.split(' ').first.to_f,
       min: 0,
-      max: Filesize.from("#{total} KB").pretty.split(' ').first.to_f,
-      moreinfo: Filesize.from("#{used} KB").pretty + " out of " + Filesize.from("#{total} KB").pretty
+      max: Filesize.from("#{total} B").pretty.split(' ').first.to_f,
+      moreinfo: Filesize.from("#{used} B").pretty + " out of " + Filesize.from("#{total} B").pretty
     }
   )
 
