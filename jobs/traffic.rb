@@ -17,10 +17,13 @@ points_iops = []
 end
 
 # detect if ceph osd pool stats is available (>=emperor)
+# pool stats are availible but dont contain iops setting pool stats to false (>=jewel)
+# probaly best to comment out that whole section
+
 result = %x( ceph osd pool stats -f json 2>&1)
 begin
   poolstats = JSON.parse(result)
-  poolstats_available = true
+  poolstats_available = false
 rescue
   poolstats_available = false
 end
@@ -53,7 +56,7 @@ SCHEDULER.every '2s' do
       end
     end
   else
-    result = %x( timeout 2 ceph status -f json )
+    result = %x( timeout 2 ceph -s -f json )
     status = JSON.parse(result)
 
     if status['pgmap'].has_key?('read_bytes_sec')
@@ -62,8 +65,11 @@ SCHEDULER.every '2s' do
     if status['pgmap'].has_key?('write_bytes_sec')
       points_wr.last[:y] = points_wr.last[:y] + status['pgmap']['write_bytes_sec'].to_i
     end
-    if status['pgmap'].has_key?('op_per_sec')
-      points_iops.last[:y] = points_iops.last[:y] + status['pgmap']['op_per_sec'].to_i
+    if status['pgmap'].has_key?('write_op_per_sec')
+      points_iops.last[:y] = points_iops.last[:y] + status['pgmap']['write_op_per_sec'].to_i
+    end
+    if status['pgmap'].has_key?('read_op_per_sec')
+      points_iops.last[:y] = points_iops.last[:y] + status['pgmap']['read_op_per_sec'].to_i
     end
   end
 
