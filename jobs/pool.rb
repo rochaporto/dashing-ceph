@@ -27,7 +27,7 @@ SCHEDULER.every '5s' do
     # Both values are in the same size value
   send_event('storage',
     {
-      value: Filesize.from("#{used} B").to_s('TB'),
+      value: Filesize.from("#{used} B").to_s('TB').split(' ').first.to_f,
       min: 0,
       max: Filesize.from("#{total} B").pretty.split(' ').first.to_f,
       #max:storage['stats']['total_bytes'].pretty.to_i,
