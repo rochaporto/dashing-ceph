@@ -17,16 +17,14 @@ points_iops = []
 end
 
 # detect if ceph osd pool stats is available (>=emperor)
-# pool stats are availible but dont contain iops setting pool stats to false (>=jewel)
-# probaly best to comment out that whole section
-
-result = %x( ceph osd pool stats -f json 2>&1)
-begin
-  poolstats = JSON.parse(result)
-  poolstats_available = false
-rescue
-  poolstats_available = false
-end
+# pool stats no longer needed, commenting this out (>=jewel)
+#result = %x( ceph osd pool stats -f json 2>&1)
+#begin
+#  poolstats = JSON.parse(result)
+#  poolstats_available = false
+#rescue
+#  poolstats_available = false
+#end
 
 SCHEDULER.every '2s' do
 
@@ -38,24 +36,8 @@ SCHEDULER.every '2s' do
   points_iops << { x: points_iops.last[:x] + 1, y: 0 }
 
 
-  # if ceph osd pool stats is available, get the rw stats from that.
-  # otherwise, use ceph status, available in dumpling.
-  if poolstats_available
-    result = %x( timeout 2 ceph osd pool stats -f json )
-    poolstats = JSON.parse(result)
-
-    poolstats.each do |poolstat|
-      if poolstat['client_io_rate'].has_key?('read_bytes_sec')
-        points_rd.last[:y] = points_rd.last[:y] + poolstat['client_io_rate']['read_bytes_sec'].to_i
-      end
-      if poolstat['client_io_rate'].has_key?('write_bytes_sec')
-        points_wr.last[:y] = points_wr.last[:y] + poolstat['client_io_rate']['write_bytes_sec'].to_i
-      end
-      if poolstat['client_io_rate'].has_key?('op_per_sec')
-        points_iops.last[:y] = points_iops.last[:y] + poolstat['client_io_rate']['op_per_sec'].to_i
-      end
-    end
-  else
+  # if cep) osd pool stats is available, get the rw stats from that.
+  # otherwise) use ceph status, available in dumpling.
     result = %x( timeout 2 ceph -s -f json )
     status = JSON.parse(result)
 
@@ -71,7 +53,6 @@ SCHEDULER.every '2s' do
     if status['pgmap'].has_key?('read_op_per_sec')
       points_iops.last[:y] = points_iops.last[:y] + status['pgmap']['read_op_per_sec'].to_i
     end
-  end
 
   send_event('traffic',
     {
